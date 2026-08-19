@@ -62,8 +62,8 @@
         <ul class="nav__list">
           <li><a href="#inicio" class="nav__link">Inicio</a></li>
           <li><a href="#servicios" class="nav__link">Servicios</a></li>
-          <li><a href="#casos" class="nav__link">Casos</a></li>
           <li><a href="#proceso" class="nav__link">Proceso</a></li>
+          <li><a href="#casos" class="nav__link">Casos</a></li>
           <li><a href="#opiniones" class="nav__link">Opiniones</a></li>
           <li><a href="#faq" class="nav__link">FAQ</a></li>
         </ul>
@@ -407,12 +407,16 @@
 
             <blockquote class="testimonial" data-testimonial-slide>
               <svg class="icon icon--accent" width="30" height="30"><use href="#icon-quote"/></svg>
-              <div class="stars" aria-label="5 de 5 estrellas">
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
+              <!-- role="img" + aria-label: el conjunto de 5 estrellas se anuncia como una
+                   sola cosa ("5 de 5 estrellas"). Sin ese role, aria-label sobre un <div>
+                   normal no es válido (rol "generic") y las estrellas se leerían sueltas,
+                   una por una, sin sentido para un lector de pantalla. -->
+              <div class="stars" role="img" aria-label="5 de 5 estrellas">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
               </div>
               <p>"Le tenía pánico al dentista y en Aurora me lo explicaron todo con mucha paciencia. La ortodoncia invisible fue mucho más llevadera de lo que esperaba."</p>
               <footer><strong>Marta G.</strong><span>Ortodoncia invisible</span></footer>
@@ -420,12 +424,12 @@
 
             <blockquote class="testimonial" data-testimonial-slide>
               <svg class="icon icon--accent" width="30" height="30"><use href="#icon-quote"/></svg>
-              <div class="stars" aria-label="5 de 5 estrellas">
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
+              <div class="stars" role="img" aria-label="5 de 5 estrellas">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
               </div>
               <p>"Me pusieron dos implantes y el proceso fue mucho más rápido y menos molesto de lo que imaginaba. El presupuesto se cumplió al céntimo."</p>
               <footer><strong>Javier R.</strong><span>Implantes dentales</span></footer>
@@ -433,12 +437,12 @@
 
             <blockquote class="testimonial" data-testimonial-slide>
               <svg class="icon icon--accent" width="30" height="30"><use href="#icon-quote"/></svg>
-              <div class="stars" aria-label="4 de 5 estrellas">
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16"><use href="#icon-star"/></svg>
-                <svg class="icon" width="16" height="16" style="opacity:.3"><use href="#icon-star"/></svg>
+              <div class="stars" role="img" aria-label="4 de 5 estrellas">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#icon-star"/></svg>
+                <svg class="icon" width="16" height="16" style="opacity:.3" aria-hidden="true"><use href="#icon-star"/></svg>
               </div>
               <p>"Muy buena atención con mi hija, que le tenía miedo al dentista. Hubo que reprogramar una cita, pero nos avisaron con tiempo."</p>
               <footer><strong>Laura M.</strong><span>Odontopediatría</span></footer>
@@ -633,7 +637,7 @@
       </div>
 
       <div class="footer__col">
-        <h4>Enlaces</h4>
+        <h3>Enlaces</h3>
         <ul>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#casos">Casos</a></li>
@@ -644,7 +648,7 @@
       </div>
 
       <div class="footer__col">
-        <h4>Servicios</h4>
+        <h3>Servicios</h3>
         <ul>
           <li><a href="#servicios">Odontología general</a></li>
           <li><a href="#servicios">Ortodoncia invisible</a></li>
@@ -654,7 +658,7 @@
       </div>
 
       <div class="footer__col">
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li><a href="tel:+34910000000">+34 910 00 00 00</a></li>
           <li><a href="mailto:hola@auroradental.es">hola@auroradental.es</a></li>

@@ -26,7 +26,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color: transparent
 }
 
 :root {
@@ -34,6 +33,7 @@
      y coral como acento cálido (cercanía, humanidad) */
   --clr-primary: #0d9488;
   --clr-primary-dark: #0f766e;
+  --clr-primary-darker: #0b5a54;
   --clr-primary-light: #ccfbf1;
   --clr-accent: #fb7185;
   --clr-accent-light: #ffe4e6;
@@ -192,7 +192,11 @@ h4 {
 .eyebrow {
   display: inline-block;
   font-weight: 600;
-  color: var(--clr-primary);
+  /* --clr-primary sobre fondo blanco da un contraste de ~3.7:1, por debajo
+     del 4.5:1 que exige WCAG AA para texto normal. --clr-primary-dark sí
+     lo cumple (~5.5:1), así que lo usamos siempre que el color vaya sobre
+     texto en vez de sobre iconos o superficies grandes. */
+  color: var(--clr-primary-dark);
   letter-spacing: 0.03em;
   font-size: 0.9rem;
   margin-bottom: 12px;
@@ -233,13 +237,16 @@ h4 {
 }
 
 .btn--primary {
-  background: var(--clr-primary);
+  /* Texto blanco sobre --clr-primary da ~3.7:1 (insuficiente). Usamos
+     --clr-primary-dark como base, que sí llega a ~5.5:1, y una variante aún
+     más oscura para el hover. */
+  background: var(--clr-primary-dark);
   color: #fff;
   box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover {
-  background: var(--clr-primary-dark);
+  background: var(--clr-primary-darker);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -352,7 +359,8 @@ select:focus-visible {
 }
 
 .logo span {
-  color: var(--clr-primary);
+  /* Texto, no icono: necesita el tono con suficiente contraste sobre blanco. */
+  color: var(--clr-primary-dark);
 }
 
 .logo__icon {
@@ -528,6 +536,10 @@ select:focus-visible {
   box-shadow: var(--shadow-md);
   max-width: 230px;
   animation: float 5s ease-in-out infinite;
+  /* Avisa al navegador de que este elemento va a animarse por transform,
+     para que lo ponga en su propia capa de composición desde el principio
+     en vez de decidirlo (o no) sobre la marcha durante el scroll. */
+  will-change: transform;
 }
 
 .hero__card--float strong {
@@ -642,7 +654,7 @@ select:focus-visible {
   gap: 6px;
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--clr-primary);
+  color: var(--clr-primary-dark);
   transition: gap var(--transition-fast);
 }
 
@@ -724,7 +736,7 @@ select:focus-visible {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--clr-primary);
+  background: var(--clr-primary-dark);
   color: #fff;
   font-family: var(--font-heading);
   font-weight: 700;
@@ -761,13 +773,13 @@ select:focus-visible {
 }
 
 .filter:hover {
-  border-color: var(--clr-primary);
-  color: var(--clr-primary);
+  border-color: var(--clr-primary-dark);
+  color: var(--clr-primary-dark);
 }
 
 .filter.is-active {
-  background: var(--clr-primary);
-  border-color: var(--clr-primary);
+  background: var(--clr-primary-dark);
+  border-color: var(--clr-primary-dark);
   color: #fff;
 }
 
@@ -914,8 +926,8 @@ select:focus-visible {
 }
 
 .testimonials__arrow:hover {
-  background: var(--clr-primary);
-  border-color: var(--clr-primary);
+  background: var(--clr-primary-dark);
+  border-color: var(--clr-primary-dark);
   color: #fff;
 }
 
@@ -1128,12 +1140,24 @@ select:focus-visible {
   margin-bottom: 14px;
 }
 
+/* --clr-primary-dark funciona sobre fondo blanco (header), pero sobre el
+   fondo oscuro del footer baja muy por debajo de 4.5:1. Aquí el span se
+   queda en blanco igual que el resto del logo, en vez de heredar el color
+   de marca. */
+.footer .logo--footer span {
+  color: #fff;
+}
+
 .footer__brand p {
   font-size: 0.9rem;
   max-width: 32ch;
 }
 
-.footer__col h4 {
+/* h3 y no h4: el footer es el último bloque de la página y el heading
+   anterior en el DOM es un h2 (el título de "Contacto"). Saltar directo a
+   h4 rompe la jerarquía de encabezados (h2 -> h4 sin pasar por h3), que es
+   justo lo que marca el audit de accesibilidad "orden de encabezados". */
+.footer__col h3 {
   color: #fff;
   font-size: 0.95rem;
   margin-bottom: 16px;
